@@ -1,0 +1,27 @@
+<p-table [value]="assetData" styleClass="p-datatable-gridlines" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Date of Recept</th>
+            <th>Assert Description</th>
+            <th>Assert Number</th>
+            <th>Serial Number</th>
+            <th>Invoice Number</th>
+            <th>Location</th>
+            <th>Quantity</th>
+            <th>Remarks</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.dateofreceipt }}</td>
+            <td>{{ product.assertdescription }}</td>
+            <td>{{ product.assertnumber }}</td>
+            <td>{{ product.serialnumber }}</td>
+            <td>{{ product.invoicenumber }}</td>
+            <td>{{ product.location }}</td>            
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.remarks }}</td>
+         
+        </tr>
+    </ng-template>
+</p-table>

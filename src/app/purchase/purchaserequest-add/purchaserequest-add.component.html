@@ -1,0 +1,105 @@
+<!-- <ng-container *ngIf="(newInvoiceState$ | async) as state" [ngSwitch]="state.dataState"> -->
+
+<ng-container>
+
+  <section>
+    <div class="container">
+      <nav aria-label="breadcrumb" style="margin-top: 8px;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/']">Home</a>
+          </li>
+          <li class="breadcrumb-item"> <a [routerLink]="['/invoices']">Purchase Item Request</a> </li>
+          <li class="breadcrumb-item active" aria-current="page">New</li>
+        </ol>
+      </nav>
+      <div class="profile-details">
+        <img src="images/profile.jpg" alt="">
+
+        <i class='bx bx-chevron-down'></i>
+      </div>
+
+      <div class="container" id="purchaseform">
+        <div class="card">
+          <form [formGroup]="myForm" (ngSubmit)="newInvoice()">
+
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Date</label>
+              <div class="col-sm-6">
+                <p-calendar formControlName="date"></p-calendar>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Department Code</label>
+              <div class="col-sm-6">
+                <p-dropdown formControlName="departmentCode" [options]="selecteddepartmentcode" optionLabel="name"
+                  placeholder="Select a Department"></p-dropdown>
+
+              </div>
+            </div> 
+
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Receiver Email</label>
+              <div class="col-sm-6">
+                <input type="email" pInputText formControlName="receiverEmail" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Reason</label>
+              <div class="col-sm-6">
+                <input type="text" pInputText formControlName="reason" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Item Description</label>
+              <div class="col-sm-6">
+                <input type="text" pInputText formControlName="itemDescription" class="form-control" required>
+              </div>
+            </div>
+           <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Item Number</label>
+              <div class="col-sm-6">
+                <input type="number" pInputText formControlName="itemNumber" class="form-control" required>
+              </div>
+            </div>
+           
+
+
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Unit Price</label>
+              <div class="col-sm-6">
+                <input type="number" pInputText formControlName="unitPrice" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Estimated Value</label>
+              <div class="col-sm-6">
+                <input type="number" pInputText formControlName="estimatedValue" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Quantity</label>
+              <div class="col-sm-6">
+                <input type="number" pInputText formControlName="quantity" class="form-control" required>
+              </div>
+            </div>
+
+        
+
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <button pButton pRipple label="Submit" class="p-button-success"></button>
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</ng-container>
+<!-- </ng-container> -->
+

@@ -1,0 +1,20 @@
+
+.form-group {
+    margin-bottom: 1rem;
+    padding: 7px;
+}
+
+
+::ng-deep #purchaseform .p-calendar {
+    position: relative;
+    display: inline-flex;
+    max-width: 100%;
+    width: 518px;
+    height: 41px;
+}
+
+::ng-deep #purchaseform .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #6c757d;
+    width: 463px;
+    height: 44px;
+}

@@ -1,0 +1,109 @@
+<div class="sales-boxes">
+    <div class="sales-boxes">
+
+        <!-- <p-table
+    #dt1
+    [value]="customers"
+    dataKey="id"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+    >
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+    
+    </p-table> -->
+        <a class="nav-item nav-link move-right mr-3" data-toggle="tab" href="#profile">
+            Welcome,
+            <i class="fa fa-user"></i>
+        </a>
+    </div>
+    
+    <div class="nav nav-pills">
+    
+    
+        <!-- nav bar -->
+        <nav class="navbar navbar-expand-md breadcrumb">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+    
+            </div>
+    
+    
+        </nav>
+    
+        <p-table #dt1 [value]="issues" styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '60rem'}"
+            [globalFilterFields]="['name', 'amount', 'quantity', 'image']" [rowsPerPageOptions]="[5, 15, 50]"
+            [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rows]="5" [paginator]="true" dataKey="id">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button pButton label="Add New" class="p-button-success" icon="pi pi-plus" (click)="addnew()"></button>
+                    &NonBreakingSpace;
+                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                        (click)="clear(dt1)"></button>
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')"
+                            placeholder="Search keyword" />
+                    </span>
+    
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Date</th>
+                    <th>department Code</th>
+                    <th>receiverEmail</th>
+                    <th>Reason</th>
+                    <th>item Number</th>
+                    <th>Item Description</th>
+                    <th>UnitPrice</th>
+                    <th>Estimate Value</th>
+                    <th>Quantity</th>
+                    <th>Sign</th>
+                    <th>View</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+    
+            <ng-template pTemplate="body" let-purchaseRequest>
+                <tr>
+                    <td>{{ purchaseRequest.date }}</td>
+                    <td>{{ purchaseRequest.departmentCode}}</td>
+                    <td>{{ purchaseRequest.receiverEmail }}</td>
+                    <td>{{ purchaseRequest.reason}}</td>
+                    <td>{{ purchaseRequest.itemNumber}}</td>
+                    <td>{{ purchaseRequest.itemDescription}}</td>
+                    <td>{{ purchaseRequest.unitPrice }}</td>
+                    <td>{{ purchaseRequest.estimatedValue }}</td>
+                    <td>{{ purchaseRequest.quantity}}</td>
+                    <td>{{ purchaseRequest.signature }}</td>
+                    <td> <button type="button" (click)="viewDetails(issues)" class="btn btn-info">View</button> </td>
+                    <td class="btngroup">
+                        <p-button icon="pi pi-user-edit" (click)="editissueaction(issues)"
+                            styleClass="p-button-rounded p-button-info"></p-button>&NonBreakingSpace;
+                        <p-button icon="pi pi-times" (click)="deleteissue(issues)"
+                            styleClass="p-button-rounded p-button-danger"></p-button>
+                        <!-- <p-button icon="pi pi-user-edit" (click)="editPurchase(product)"
+                            styleClass="p-button-rounded p-button-info"></p-button>&NonBreakingSpace;
+                        <p-button icon="pi pi-times" (click)="deleteUser(product)"
+                            styleClass="p-button-rounded p-button-danger"></p-button> -->
+    
+                    </td>
+                    <td>{{ purchaseRequest.action }}</td>
+            </ng-template>
+        </p-table>
+
+
+</div>

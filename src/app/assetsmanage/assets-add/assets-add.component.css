@@ -1,0 +1,17 @@
+.justify-content-center{
+width: 70%;
+margin: auto;
+color: white;
+background: #006033;
+border-radius:10px;
+border-block-start: 3px solid #f8a100;
+  border-inline-end: 3px solid #f8a100;
+  border-block-end: 3px solid #f8a100;
+  border-inline-start: 3px solid #f8a100;
+}
+.justify-content-center form{
+padding: 5px;
+width: 76%;
+position: relative;
+top: 10px;
+}

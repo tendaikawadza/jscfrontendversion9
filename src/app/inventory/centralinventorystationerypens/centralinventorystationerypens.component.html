@@ -1,0 +1,317 @@
+
+<div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name"><img src="../../assets/img/logo.png" /></span> Test
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#" class="active">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+      </li>
+    
+      <div class="col-md-6 col-lg-2 col-xlg-3" routerLink="/" routerLinkActive="true">
+  
+  
+        <h1 class="font-light text-white">
+  
+        </h1>
+        <h6 class="text-white">Inventory</h6>
+      </div>
+   
+  
+      <li>
+  
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Issue Vouchers</span>
+        </a>
+      </li>
+  
+      <li>
+  
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Stock Requests</span>
+        </a>
+      </li>
+      <li>
+      <li>
+        <a href="#">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Purchase Request </span>
+        </a>
+      </li>
+  
+      <li>
+        <a href="#">
+          <i class='bx bx-box'></i>
+          <span class="links_name">users </span>
+        </a>
+      </li>
+  
+  
+  
+  
+  
+      <li>
+  
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      Column
+  
+  
+      <div routerLink="/purchase" routerLinkActive="true">
+  
+  
+  
+        <h6 class="text-white">Purchase Request</h6>
+      </div>
+  
+  
+    </ul>
+   
+    
+  
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <i class='bx bx-search'></i>
+      </div>
+      <div class="profile-details">
+        <img src="images/profile.jpg" alt="">
+        <span class="admin_name">Prem Shahi</span>
+        <i class='bx bx-chevron-down'></i>
+      </div>
+    </nav>
+  
+    <div class="home-content">
+<div class="card">
+    Stationery Inventory pens
+
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"> <button pButton pRipple label="New" icon="pi pi-plus"
+                            class="p-button-success p-mr-2" (click)="openNew()"></button>
+                    </div>
+                    <div class="col">
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
+                            (click)="selectedProducts()"
+                            [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                    </div>
+                    <!-- <div class="col" style="padding: 8px;">Product Name</div> -->
+                        <a class="btn btn-primary" routerLink="/beancardcentral" routerLinkActive="active">Bean Cards</a>
+
+                    <div class="col">
+                        <p-dropdown [options]="pcodeList" (onChange)="getPcode(selectedCode)" [(ngModel)]="selectedCode"
+                            optionLabel="pcodeCount" [filter]="true" filterBy="productName" [showClear]="true"
+                            placeholder="Select a Product">
+                            <ng-template pTemplate="selectedItem">
+                                <div class="flex align-items-center gap-2" *ngIf="selectedCode">
+                                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                        [class]="'flag flag-' + selectedCode.productCode" style="width: 18px" />
+                                    <div>{{ selectedCode.pcodeCount }} </div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-country pTemplate="item">
+                                <div class="flex align-items-center gap-2">
+                                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                        [class]="'flag flag-' + country.productCode" style="width: 18px" />
+                                    <div>{{ country.pcodeCount }} </div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- <p-button label="Issued"  class="float-right"></p-button> -->
+
+
+        </ng-template>
+        <style>
+            .float-right {
+                float: right;
+                margin-right: 90px;
+            }
+        </style>
+
+        <a class="btn btn-primary" routerLink="/issued" routerLinkActive="active">Issued</a>
+        <!-- <p-button label="Issued" [routerLink]="'/issued'" class="float-right"></p-button> -->
+        <a class="btn btn-primary" routerLink="/beancardcentral" routerLinkActive="active">Up load delivery Voucher</a>
+        <!-- <p-button label="Issued" [routerLink]="'/issued'" class="float-right"></p-button> -->
+    
+
+        <ng-template pTemplate="right">
+            <button pButton pRipple label="Logout" icon="pi pi-fw pi-power-off" class="p-button-danger logoutbtn p-mr-2"
+                (click)="logout()"></button>
+
+        </ng-template>
+
+    </p-toolbar>
+
+    <p-table #dt [value]="products" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['dateReceived','','productCode','productCategory']" [(selection)]="selectedProducts"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Products</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <!-- <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." /> -->
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="Date" style="min-width:15rem">Date Received is required</th>
+
+                <th pSortableColumn="from whom Received" style="min-width:15rem">From Whom Received </th>
+                <th pSortableColumn="from whom Received" style="min-width:15rem">Product Received </th>
+
+                <th pSortableColumn=""> </th>
+                <th pSortableColumn="quantityreceived" style="min-width:10rem">Quantity Received</th>
+                <th pSortableColumn="quantityreceived" style="min-width:10rem">Running Balance</th>
+                
+                <!-- <th pSortableColumn="productDescription" style="min-width:10rem">Stock</th> -->
+                <!-- <th pSortableColumn="Receiptvoichernumber" style="min-width:10rem">Status</th> -->
+
+
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <!-- {{product | json}} -->
+             
+                <td>{{product.fromWhomreceived }}</td>
+                <td>{{product.quantityReceived}}</td>
+                <td>{{product.productReceived}}</td>
+                <td>{{product.receiptVoicherNumber}}</td>
+                <td>{{product.runningbalance}}</td>
+                <td>{{product.Status}}</td>
+                <!-- <td>{{product.inStock}}</td> -->
+
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editProduct(product)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="selectedProducts(product)"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{products ? products.length : 0 }} products.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '650px'}" header="Product Details" [modal]="true"
+    styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <form [formGroup]="addProductForm" id="myform" (ngSubmit)="onSubmit()" class="stockform">
+            <!-- <div class="p-field">
+                <label for="name">Product Code</label>
+                <input type="text" pInputText formControlName="productCode"
+                    [ngClass]="{ 'is-invalid': submitted && f['firstName']?.errors }" />
+                <div *ngIf="submitted && f['productCode']?.errors" class="invalid-feedback">L TIME CTRL+
+                    <div *ngIf="f['productCode']?.errors.required">Product Code is required</div>
+                </div>
+            </div> -->
+
+            <div class="p-field">
+                <label for="name">Date Received</label>
+                <input type="date" pInputText formControlName="dateReceived"
+                    [ngClass]="{ 'is-invalid': submitted && f['dateReceived']?.errors }" />
+                <div *ngIf="submitted && f['dateReceived']?.errors" class="invalid-feedback">
+                    <div *ngIf="f['dateReceived']?.errors">Date is required</div>
+                </div>
+            </div>
+
+
+
+            <div class="p-field">
+                <label for="name"> From Whom Received</label>
+                <input type="text" pInputText formControlName="fromWhomreceived"
+                    [ngClass]="{ 'is-invalid': submitted && f['fromWhomreceived']?.errors }" />
+                <div *ngIf="submitted && f['fromWhomreceived']?.errors" class="invalid-feedback">
+                    <div *ngIf="f['fromWhomreceived']?.errors">From Whon Received is required</div>
+                </div>
+            </div>
+
+            <div class="p-field">
+                <label for="name"> Product Received</label>
+                <input type="text" pInputText formControlName="productreceived"
+                    [ngClass]="{ 'is-invalid': submitted && f['productreceived']?.errors }" />
+                <div *ngIf="submitted && f['fromWhomreceived']?.errors" class="invalid-feedback">
+                    <div *ngIf="f['fromWhomreceived']?.errors">From Whon Received is required</div>
+                </div>
+            </div>
+
+            <div class="p-field">
+                <label for="name"> Quantity Received </label>
+                <input type="text" pInputText formControlName="quantityReceived"
+                    [ngClass]="{ 'is-invalid': submitted && f['quantityReceived']?.errors }" />
+
+                <!-- <p-dropdown [options]="categoryOpt" formControlName="price" optionLabel="code"
+                    [ngClass]="{ 'is-invalid': submitted && f['price']?.errors }"></p-dropdown> -->
+
+
+
+                <div *ngIf="submitted && f['quantityReceived']?.errors" class="invalid-feedback">
+                    <div *ngIf="f['quantityReceived']?.errors">Quantity is required</div>
+                </div>
+            </div>
+            <div class="p-field">
+                <label for="name">Receipt Voicher Number</label>
+                <input type="text" pInputText formControlName="receiptvoichernumber"
+                    [ngClass]="{ 'is-invalid': submitted && f['receiptvoichernumber']?.errors }" />
+                <div *ngIf="submitted && f['receiptVoicherNumber']?.errors" class="invalid-feedback">
+                    <div *ngIf="f['receiptVoicherNumber']?.errors">Voicher Number is required c</div>
+                </div>
+            </div>
+            <!-- <div class="p-field">
+                <label for="name">Running_balance</label>
+                <input type="text" pInputText formControlName="Runningbalance"
+                    [ngClass]="{ 'is-invalid': submitted && f['Runningbalance']?.errors }" />
+                <div *ngIf="submitted && f['receiptVoicherNumber']?.errors" class="invalid-feedback">
+                    <div *ngIf="f['receiptVoicherNumber']?.errors">Running_balance</div>
+                </div>
+            </div> -->
+
+            <input type="hidden" formControlName="productId" />
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-info" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" type="submit" form="myform" icon="pi pi-check"
+            class="p-button-success"></button>
+    </ng-template>
+
+</p-dialog>
+
+
+
+<!-- <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog> -->
